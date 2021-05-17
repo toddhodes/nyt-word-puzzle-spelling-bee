@@ -20,7 +20,7 @@ var o = ""
 for (i in "abcdefghijklmnopqrstuvwxyz") {
    if (i !in letters) o += i
 }
-val command = "cat /usr/share/dict/words  |egrep -iv '[" + o + "]' | egrep [" + required + "] | sort"
+val command = "cat /usr/share/dict/words  |egrep -iv '[" + o + "]' | egrep [" + required + "] | awk 'length(\$0) > 3' | sort"
 System.out.println(command)
 
 val cmd = arrayOf( "/bin/sh", "-c", command)
