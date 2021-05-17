@@ -20,14 +20,15 @@ var o = ""
 for (i in "abcdefghijklmnopqrstuvwxyz") {
    if (i !in letters) o += i
 }
-val command = "cat /usr/share/dict/words  |egrep -iv '[" + o + "]' | egrep [" + required + "] | awk 'length(\$0) > 3' | sort"
+val command = "cat /usr/share/dict/words | egrep -iv '[" +
+    o + "]' | egrep [" + required + "] | awk 'length(\$0) > 3' | sort"
 System.out.println(command)
 
 val cmd = arrayOf( "/bin/sh", "-c", command)
 val process = Runtime.getRuntime().exec(cmd)
 val reader = BufferedReader(InputStreamReader(process.inputStream))
 val line = reader.readText();
-println(line)
+print(line)
 EOF
 
 kotlinc -script /tmp/wpsolver.kts 2>/dev/null
